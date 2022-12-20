@@ -1,4 +1,4 @@
-alert("TODO_0: сделать инициализацию пользователя с сервера. Если он госслужащий, то мы добавим кнопочку 'перейти в министерство'(она есть в хтмльке), которая отправит пользователя на страницу министерства (которую мы ща активно делаем. наверно). Если деловой важный человек предприниматель, то мы добавим кнопочку 'перейти в фирму' (она тоже есть в хтмл), которая отправит пользователя на страницу фирмы (которую мы тоже делаем, но не так активно).");
+//alert("TODO_0: сделать инициализацию пользователя с сервера. Если он госслужащий, то мы добавим кнопочку 'перейти в министерство'(она есть в хтмльке), которая отправит пользователя на страницу министерства (которую мы ща активно делаем. наверно). Если деловой важный человек предприниматель, то мы добавим кнопочку 'перейти в фирму' (она тоже есть в хтмл), которая отправит пользователя на страницу фирмы (которую мы тоже делаем, но не так активно).");
 
 function nalogi () {
   //Добавление кода на страницу
@@ -14,7 +14,7 @@ function nalogi () {
       <div class="modal-body">
       </div>
       <div class="modal-footer">
-        <button id="modal_cancel_id" onclick="modal_cancel()" class="btn-orange">Выйти</button>
+        <button id="modal_cancel_id" onclick="modalCancel()" class="btn-orange">Выйти</button>
       </div>
     </div>
   </div>`)
@@ -29,7 +29,7 @@ function nalogi () {
   }
   else {
     modalTaxes.insertAdjacentHTML("afterbegin", `<span class="modal-nalogi" style="background-color: #fe5495">Налоги не уплачены</span>`);
-    modalTaxesFooter.insertAdjacentHTML("afterbegin", `<button onclick="paytaxes(still not finished)" type="button" class="btn-orange">Упллатить</button>`);
+    modalTaxesFooter.insertAdjacentHTML("afterbegin", `<button onclick="paytaxes()" type="button" class="btn-orange">Упллатить</button>`);
   }
 }
 
@@ -50,8 +50,8 @@ function perevod () {
           <input id="input_2" autocomplete="off" type="number" placeholder="Кол-во талиц: " name="money-amount" required>
         </div>
         <div class="modal-footer">
-          <button onclick="pin_code()" type="button" class="btn-orange">Подтвердить</button>
-          <button id="modal_cancel_id" type="button" onclick="modal_cancel()" class="btn-orange">Выйти</button>
+          <button onclick="pinCode()" type="button" class="btn-orange">Подтвердить</button>
+          <button id="modal_cancel_id" type="button" onclick="modalCancel()" class="btn-orange">Выйти</button>
         </div>
       </form>
     </div>
@@ -75,15 +75,15 @@ function uslugi () {
           <input id="input_2" autocomplete="off" maxlength="32" placeholder="Выберите услугу: " name="service-name" required>
         </div>
         <div class="modal-footer">
-          <button onclick="pin_code()" type="button" class="btn-orange">Подтвердить</button>
-          <button id="modal_cancel_id" type="button" onclick="modal_cancel()" class="btn-orange">Выйти</button>
+          <button onclick="pinCode()" type="button" class="btn-orange">Подтвердить</button>
+          <button id="modal_cancel_id" type="button" onclick="modalCancel()" class="btn-orange">Выйти</button>
         </div>
       </form>  
     </div>
   </div>`)
 }
 
-function pin_code () { //Модальное окно с вводом пин-кода. 
+function pinCode () { //Модальное окно с вводом пин-кода. 
   alert('TODO_4: Нижнюю проверку на кол-во символов надо будет заменить на проверку наличия игрока/фирмы в базе данных. В случае игрока - проверка кол-ва талиц на балансе. В случае фирмы - проверка кол-ва талиц на балансе и проверка наличия услуги у фирмы.');
   let inputForm1 = document.getElementById("input_1");
   let inputForm2 = document.getElementById("input_2");
@@ -93,7 +93,7 @@ function pin_code () { //Модальное окно с вводом пин-ко
   if (inputForm2.value.length < 4) {
     inputForm2.style.border = "1px solid #ff483b";
   }
-  else {  
+  if (inputForm1.value.length > 4 && inputForm2.value.length > 4) {  
     let pin_modal = document.createElement("div");
     pin_modal.classList.add("pin_modal");
     document.body.append(pin_modal);
@@ -108,8 +108,8 @@ function pin_code () { //Модальное окно с вводом пин-ко
             <input id="pin-input" type="password" autocomplete="off" maxlength="6" placeholder="Введите ваш пин-код: " name="pin-code" required>
           </div>
           <div class="modal-footer">
-            <button type="button" onclick="pin_code_verify()" class="btn-orange">Подтвердить</button>
-            <button id="modal_cancel_id" type="button" onclick="modal_cancel()" class="btn-orange">Выйти</button>
+            <button type="button" onclick="pinCodeVerify()" class="btn-orange">Подтвердить</button>
+            <button id="modal_cancel_id" type="button" onclick="modalCancel()" class="btn-orange">Выйти</button>
           </div>
         </form>
       </div>
@@ -122,7 +122,7 @@ function pin_code () { //Модальное окно с вводом пин-ко
     });
   }
 }
-function pin_code_verify () { //Подтверждение пин-кода.
+function pinCodeVerify () { //Подтверждение пин-кода.
   let pinForm = document.querySelector("form");
   let pinInput = document.getElementById("pin-input");
   alert('TODO_5: Тут надо запросы к серваку делать на подтверждение пин-кода, а не тот огрызок, который я сделал. PIN=228133');
@@ -134,7 +134,7 @@ function pin_code_verify () { //Подтверждение пин-кода.
   }
 }
 
-function modal_cancel () { //Кнопка "Выйти" в модалках
+function modalCancel () { //Кнопка "Выйти" в модалках
   let modal_btn = document.querySelectorAll("#modal_cancel_id");
   for (let i = 0; i < modal_btn.length; i++) {modal_btn[i].setAttribute("disabled", "disabled");}
   let modal = document.querySelector(".modal");
@@ -154,4 +154,85 @@ function modal_cancel () { //Кнопка "Выйти" в модалках
     setTimeout(() => {  modal.remove();}, 970);
   }
 }
+
+function playerTransfers () {
+  try {log_values = document.getElementById("log-values").remove();} catch {};
+  let prifirmTransfersId = document.getElementById("prifirmTransfersId");
+  prifirmTransfersId.insertAdjacentHTML("afterend", `
+  <div id="log-values">
+  <h2>|Сумма и время|</h2>
+  <h2>|Отправитель|</h2>
+  <h2>|Получатель|</h2>
+  <hr>
+  <!--Образец вывода-->
+  <p>|228 талиц, 14:34|</p>
+  <p>|Пельмень Андреевич|</p>
+  <p>|Бекмамбет Трахтенбергович|</p>
+  <hr>
+  <p>|1337 талиц, 13:53|</p>
+  <p>|Uvuvwevwevwe Onyetenyevwe Ugwemuhwem Osas|</p>
+  <p>|У чувака выше ахринеть какое длинное имя. У меня длиннее ;p|</p>
+  <hr>
+  <p>|4321 талиц, 12:13|</p>
+  <p>|Копипастим, пока руки не отвалятся|</p>
+  <p>|Да-да, не отвалятся|</p>
+  <hr>
+  <p>|1234 талиц, 11:43|</p>
+  <p>|Босс, я устал|</p>
+  <p>|Давай-давай, вилкой чисти-чисти, раз-раз-раз-раз|</p>
+  </div>
+  `)
+}
+function pubfirmTransfers () {
+  try {document.getElementById("log-values").remove();} catch {};
+  let prifirmTransfersId = document.getElementById("prifirmTransfersId");
+  prifirmTransfersId.insertAdjacentHTML("afterend", `
+  <div id="log-values">
+  <h2>|Сумма и время|</h2>
+  <h2>|Отправитель|</h2>
+  <h2>|Получатель|</h2>
+  <hr>
+  <!--Образец вывода-->
+  <p>|338 талиц, 15:51|</p>
+  <p>|Дофига важный|</p>
+  <p>|Х#й бумажный|</p>
+  <hr>
+  <p>|777 талиц, 12:12|</p>
+  <p>|Uvuvwevwevwe Onyetenyevwe Ugwemuhwem Osas-старший|</p>
+  <p>|Еб#ть пизд#тый|</p>
+  <hr>
+  <p>|4321 талиц, 11:52|</p>
+  <p>|Еб#ть комплимент|</p>
+  <p>|В жопе цемент|</p>
+  <hr>
+  <p>|1341 талиц, 10:43|</p>
+  <p>|Х#я крутой|</p>
+  <p>|Вытри ♂ cum ♂ под губой|</p>
+  </div>
+  `)
+}
+function prifirmTransfers () { 
+  try {document.getElementById("log-values").remove();} catch {console.log(" ")};
+  let prifirmTransfersId = document.getElementById("prifirmTransfersId");
+  prifirmTransfersId.insertAdjacentHTML("afterend", `
+  <div id="log-values">
+  <h2>|Сумма и время|</h2>
+  <h2>|Отправитель|</h2>
+  <h2>|Получатель|</h2>
+  <hr>
+  <!--Образец вывода-->
+  <h1>|Заполняем хоть бы как|</h1>
+  <hr>
+  <h2>|Пук-среньк|</h2>
+  <hr>
+  <h3>|Хи-хи|</h3>
+  <hr>
+  <h4>|Ха-ха|</h4>
+  <hr>
+  <h5>|Шизофрения какая-то. Бывает ¯\\_(ツ)_/¯|</h5>
+  <style>.log-table h1, h3, h4, h5 {color: #fe9654;}</style>
+  `)
+}
+
+
 //Жёстко заспидранил stuckoverflow за день.

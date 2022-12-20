@@ -31,34 +31,9 @@ input { /*Поля*/
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
-.submit { /*Кнопка авторизации*/
-    background-color: #3bff86;
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 2rem;
-    cursor: pointer;
-    transition: 0.3s;
-    border-radius: 10px;
-    margin: 20px;
-    font-family: 'Oswald', sans-serif;
-}
-.submit:hover {
-    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.238), 0 17px 50px 0 rgba(0, 0, 0, 0.3);
-}
-.submit:active {
-    transition: none;
-    background-color: #30d670cf;
-}
-
 .main {
     text-align: center;
 }
-
-/*----------Кнопки на странице (кроме кнопок в модалке)----------*/
 
 .exit {
     background-color: #3bff86;
@@ -74,11 +49,9 @@ input { /*Поля*/
     border-radius: 10px;
     font-family: 'Oswald', sans-serif;
 }
-
 .exit:hover {
     box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.238), 0 17px 50px 0 rgba(0, 0, 0, 0.3);
 }
-
 .exit:active {
     transition: none;
     background-color: #30d670cf;
@@ -134,6 +107,31 @@ input { /*Поля*/
     box-shadow: none;
 }
 
+/*----------Авторизация----------*/
+
+.submit { /*Кнопка авторизации*/
+    background-color: #3bff86;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 10px;
+    margin: 20px;
+    font-family: 'Oswald', sans-serif;
+}
+.submit:hover {
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.238), 0 17px 50px 0 rgba(0, 0, 0, 0.3);
+}
+.submit:active {
+    transition: none;
+    background-color: #30d670cf;
+}
+
 /*----------Модальное окошечко---------*/
 
 .modal,
@@ -172,37 +170,6 @@ input { /*Поля*/
 .modal-body input {
     margin-bottom: 2vh;
 }
-/* .modal-submit,
-.modal-cancel {
-    background-color: #fe9654;
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 1.5rem;
-    margin: 4px 2px 15px;
-    cursor: pointer;
-    transition: 0.3s;
-    border-radius: 10px;
-    font-family: 'Oswald', sans-serif;
-}
-.modal-submit:hover,
-.modal-cancel:hover {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.238), 0 17px 50px 0 rgba(0, 0, 0, 0.3);
-}
-.modal-submit:active,
-.modal-cancel:active {
-    transition: none;
-    background-color: #fe9554d1;
-}
-.modal-submit:disabled {
-    cursor: not-allowed;
-    background-color: #fe945280;
-    box-shadow: none;
-} */
-
 .modal-nalogi { /*Статус налогов*/
     background-color: #fe9654;
     border: none;
@@ -213,4 +180,36 @@ input { /*Поля*/
     display: inline-block;
     margin: 4px 2px 15px;
     border-radius: 10px;
+}
+
+/*---------Министерства---------*/
+
+.main span {
+    margin: 10vw;
+}
+
+.log-table {
+    width: 80vw;
+    height: 70vh;
+    border-radius: 10px;
+    background-color: #000;
+    margin: 1vh auto 3vh auto;
+    overflow: auto;
+}
+.log-table button {
+    margin: 2vh auto;
+}
+.log-table hr {
+    height: 0.5vh;
+    background-color: #fff;
+}
+.log-table h2 {
+    color: #fe9654;
+    margin: auto 8vw auto 8vw;
+    text-align: center;
+}
+.log-table p {
+    color: #fe9654;
+    font-size: 1.5rem;
+    margin: 1vh auto;
 }
