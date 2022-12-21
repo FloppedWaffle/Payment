@@ -35,7 +35,13 @@ input { /*Поля*/
     text-align: center;
 }
 
-.exit {
+.start-btns { /*div с верхними кнопками на страничке*/
+    display: flex;
+    justify-content: space-between;
+    margin: auto 1vw auto 1vw;
+}
+
+.btn-green {
     background-color: #3bff86;
     border: none;
     color: white;
@@ -49,12 +55,29 @@ input { /*Поля*/
     border-radius: 10px;
     font-family: 'Oswald', sans-serif;
 }
-.exit:hover {
-    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.238), 0 17px 50px 0 rgba(0, 0, 0, 0.3);
+.btn-green:hover {
+    box-shadow: 0 10px 15px 0 #3dff8766, 0 15px 30px 0 #3dff8780;
 }
-.exit:active {
+.btn-green:active {
     transition: none;
     background-color: #30d670cf;
+}
+
+.lightDarkToggle {
+    align-content: start;
+    border: 5px solid #3bff86;
+    border-radius: 5px;
+    background-color: #3bff86;
+    font-size: 2.5rem;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.lightDarkToggle:hover {
+    box-shadow: 0 10px 15px 0 #3dff8766, 0 15px 30px 0 #3dff8780;
+}
+.lightDarkToggle:active {
+    background-color: #2cc165;
+    transition: none;
 }
 
 .btn-purple { /*Кнопочки*/
@@ -73,12 +96,13 @@ input { /*Поля*/
     font-family: 'Oswald', sans-serif;
 }
 .btn-purple:hover {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.238), 0 17px 50px 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 10px 15px 0 #513dff66, 0 15px 30px 0 #513dff80;
 }
 .btn-purple:active {
     transition: none;
     background-color: #4f3bffd1;
 }
+
 .btn-orange {
     background-color: #fe9654;
     border: none;
@@ -95,7 +119,7 @@ input { /*Поля*/
     font-family: 'Oswald', sans-serif;
 }
 .btn-orange:hover {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.238), 0 17px 50px 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 5px 15px 0 #fe945266, 0 10px 25px 0 #fe945280;
 }
 .btn-orange:active {
     transition: none;
@@ -105,31 +129,6 @@ input { /*Поля*/
     cursor: not-allowed;
     background-color: #fe945280;
     box-shadow: none;
-}
-
-/*----------Авторизация----------*/
-
-.submit { /*Кнопка авторизации*/
-    background-color: #3bff86;
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 2rem;
-    cursor: pointer;
-    transition: 0.3s;
-    border-radius: 10px;
-    margin: 20px;
-    font-family: 'Oswald', sans-serif;
-}
-.submit:hover {
-    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.238), 0 17px 50px 0 rgba(0, 0, 0, 0.3);
-}
-.submit:active {
-    transition: none;
-    background-color: #30d670cf;
 }
 
 /*----------Модальное окошечко---------*/
@@ -148,7 +147,7 @@ input { /*Поля*/
     left: 0;
     bottom: 0;
     right: 0;
-    background: rgba(0, 0, 0, .3);
+    background: #0000004d;
 }
 .modal-window { /*Содержание модального окна*/
     width: 80vw;
@@ -192,7 +191,7 @@ input { /*Поля*/
     width: 80vw;
     height: 70vh;
     border-radius: 10px;
-    background-color: #000;
+    border: 10px solid #fe9654;
     margin: 1vh auto 3vh auto;
     overflow: auto;
 }
@@ -200,8 +199,8 @@ input { /*Поля*/
     margin: 2vh auto;
 }
 .log-table hr {
-    height: 0.5vh;
-    background-color: #fff;
+    height: 0.75vh;
+    background-color: #fe9654;
 }
 .log-table h2 {
     color: #fe9654;

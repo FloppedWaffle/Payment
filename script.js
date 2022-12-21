@@ -1,4 +1,34 @@
 //alert("TODO_0: сделать инициализацию пользователя с сервера. Если он госслужащий, то мы добавим кнопочку 'перейти в министерство'(она есть в хтмльке), которая отправит пользователя на страницу министерства (которую мы ща активно делаем. наверно). Если деловой важный человек предприниматель, то мы добавим кнопочку 'перейти в фирму' (она тоже есть в хтмл), которая отправит пользователя на страницу фирмы (которую мы тоже делаем, но не так активно).");
+var toggle = false;
+
+function lightDarkToggle () { //Переключатель светлого и тёмного режима странички
+  let h1 = document.querySelectorAll("h1");
+  let h2 = document.querySelectorAll("h2");
+  let li = document.querySelectorAll("li");
+  let btns = document.querySelectorAll("button");
+  let toggle_btn = document.getElementById("lightDarkToggle");
+  toggle_anim = [
+    { opacity: 0},
+    { opacity: 1}
+  ]
+
+  if (toggle) {
+    toggle = !toggle;
+    toggle_btn.textContent = "☀"; toggle_btn.animate(toggle_anim, { duration: 1000});
+    document.body.style.backgroundColor = "#fff"; document.body.animate(toggle_anim, { duration: 1000});
+    for (i = 0; i < h1.length; i++) { h1[i].style.color = "#000"; h1[i].animate(toggle_anim, { duration: 1000})};
+    for (i = 0; i < h2.length; i++) { h2[i].style.color = "#000"; h2[i].animate(toggle_anim, { duration: 1000})};
+    for (i = 0; i < li.length; i++) { li[i].style.color = "#000"; li[i].animate(toggle_anim, { duration: 1000})};
+  }
+  else {
+    toggle = !toggle;
+    toggle_btn.textContent = "☽"; toggle_btn.animate(toggle_anim, { duration: 1000});
+    document.body.style.backgroundColor = "#000"; document.body.animate(toggle_anim, { duration: 1000});
+    for (i = 0; i < h1.length; i++) { h1[i].style.color = "#fff"; h1[i].animate(toggle_anim, { duration: 1000})};
+    for (i = 0; i < h2.length; i++) { h2[i].style.color = "#fff"; h2[i].animate(toggle_anim, { duration: 1000})};
+    for (i = 0; i < li.length; i++) { li[i].style.color = "#fff"; li[i].animate(toggle_anim, { duration: 1000})};
+  }
+}
 
 function nalogi () {
   //Добавление кода на страницу
@@ -6,8 +36,8 @@ function nalogi () {
   modal.classList.add("modal");
   document.body.append(modal);
   modal.insertAdjacentHTML("afterbegin", `
-  <div class="modal-overlay">
-    <div class="modal-window">
+  <div id="modal-overlay" class="modal-overlay">
+    <div id="modal-window" class="modal-window">
       <div class="modal-header">
         <span class="modal-title">Уплата налогов</span>
       </div>
@@ -17,7 +47,7 @@ function nalogi () {
         <button id="modal_cancel_id" onclick="modalCancel()" class="btn-orange">Выйти</button>
       </div>
     </div>
-  </div>`)
+  </div>`);
 
   alert("Уплачены/неуплачены (Если 1 => уплачены, иначе => неуплачены) TODO_1: сделать в зависимости от значения на сервере вывод статуса налогов. В случае неуплаты при нажатии на 'Уплатить' значение на сервере изменится.");
   let taxes = prompt("Вы уплатили налоги?");
@@ -30,7 +60,7 @@ function nalogi () {
   else {
     modalTaxes.insertAdjacentHTML("afterbegin", `<span class="modal-nalogi" style="background-color: #fe5495">Налоги не уплачены</span>`);
     modalTaxesFooter.insertAdjacentHTML("afterbegin", `<button onclick="paytaxes()" type="button" class="btn-orange">Упллатить</button>`);
-  }
+  };
 }
 
 function perevod () {
@@ -39,8 +69,8 @@ function perevod () {
   modal.classList.add("modal");
   document.body.append(modal);
   modal.insertAdjacentHTML("afterbegin", `
-  <div class="modal-overlay">
-    <div class="modal-window">
+  <div id="modal-overlay" class="modal-overlay">
+    <div id="modal-window" class="modal-window">
       <div class="modal-header">
         <span class="modal-title">Перевод средств другому игроку</span>
       </div>
@@ -55,7 +85,7 @@ function perevod () {
         </div>
       </form>
     </div>
-  </div>`)
+  </div>`);
 }
 
 function uslugi () {
@@ -64,8 +94,8 @@ function uslugi () {
   modal.classList.add("modal");
   document.body.append(modal);
   modal.insertAdjacentHTML("afterbegin", `
-  <div class="modal-overlay">
-    <div class="modal-window">
+  <div id="modal-overlay" class="modal-overlay">
+    <div id="modal-window" class="modal-window">
       <div class="modal-header">
         <span class="modal-title">Оплата услуг фирмы</span>
       </div>
@@ -80,7 +110,7 @@ function uslugi () {
         </div>
       </form>  
     </div>
-  </div>`)
+  </div>`);
 }
 
 function pinCode () { //Модальное окно с вводом пин-кода. 
@@ -98,8 +128,8 @@ function pinCode () { //Модальное окно с вводом пин-ко�
     pin_modal.classList.add("pin_modal");
     document.body.append(pin_modal);
     pin_modal.insertAdjacentHTML("afterbegin", `    
-    <div class="modal-overlay">
-      <div class="modal-window">
+    <div id="modal-overlay" class="modal-overlay">
+      <div id="modal-window" class="modal-window">
         <div class="modal-header">
           <span class="modal-title">Подтверждение действия</span>
         </div>
@@ -180,8 +210,7 @@ function playerTransfers () {
   <p>|1234 талиц, 11:43|</p>
   <p>|Босс, я устал|</p>
   <p>|Давай-давай, вилкой чисти-чисти, раз-раз-раз-раз|</p>
-  </div>
-  `)
+  </div>`);
 }
 function pubfirmTransfers () {
   try {document.getElementById("log-values").remove();} catch {};
@@ -208,8 +237,7 @@ function pubfirmTransfers () {
   <p>|1341 талиц, 10:43|</p>
   <p>|Х#я крутой|</p>
   <p>|Вытри ♂ cum ♂ под губой|</p>
-  </div>
-  `)
+  </div>`);
 }
 function prifirmTransfers () { 
   try {document.getElementById("log-values").remove();} catch {console.log(" ")};
@@ -230,8 +258,7 @@ function prifirmTransfers () {
   <h4>|Ха-ха|</h4>
   <hr>
   <h5>|Шизофрения какая-то. Бывает ¯\\_(ツ)_/¯|</h5>
-  <style>.log-table h1, h3, h4, h5 {color: #fe9654;}</style>
-  `)
+  <style>.log-table h1, h3, h4, h5 {color: #fe9654;}</style>`);
 }
 
 

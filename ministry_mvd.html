@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <head>
-    <script>alert("Надо сделать вывод всех транзакций по 3 табличкам")</script>
+    <!-- <script>alert("Надо сделать вывод всех транзакций по 3 табличкам")</script> -->
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>МВД</title>
+    <title>MVD</title>
 </head>
 <body>
-    <button class="exit">Выйти из аккаунта</button>
+    <div class="start-btns">
+        <button class="btn-green">Выйти из аккаунта</button>
+        <button id="lightDarkToggle" onclick="lightDarkToggle()" class="lightDarkToggle">&#9728;</button>
+    </div>
     <div class="main">
         <div id="info">
             <h1>Добро пожаловать, сотрудник МВД!</h1>
