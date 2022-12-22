@@ -1,32 +1,37 @@
 //alert("TODO_0: сделать инициализацию пользователя с сервера. Если он госслужащий, то мы добавим кнопочку 'перейти в министерство'(она есть в хтмльке), которая отправит пользователя на страницу министерства (которую мы ща активно делаем. наверно). Если деловой важный человек предприниматель, то мы добавим кнопочку 'перейти в фирму' (она тоже есть в хтмл), которая отправит пользователя на страницу фирмы (которую мы тоже делаем, но не так активно).");
-var toggle = false;
 
-function lightDarkToggle () { //Переключатель светлого и тёмного режима странички
+function lightDarkToggle (toggle) { //Переключатель светлого и тёмного режима странички
+  if (typeof localStorage["Toggle"] != "string") {
+    localStorage["Toggle"] = "true";
+  }
+
   let h1 = document.querySelectorAll("h1");
-  let h2 = document.querySelectorAll("h2");
+  let h2 = document.querySelector("#info").querySelectorAll("h2");
   let li = document.querySelectorAll("li");
-  let btns = document.querySelectorAll("button");
+  let hr = document.getElementById("main-hr");
   let toggle_btn = document.getElementById("lightDarkToggle");
   toggle_anim = [
     { opacity: 0},
     { opacity: 1}
   ]
 
-  if (toggle) {
-    toggle = !toggle;
-    toggle_btn.textContent = "☀"; toggle_btn.animate(toggle_anim, { duration: 1000});
+  if (localStorage["Toggle"] == "true") {
+    toggle_btn.textContent = "🌚"; toggle_btn.animate(toggle_anim, { duration: 1000});
     document.body.style.backgroundColor = "#fff"; document.body.animate(toggle_anim, { duration: 1000});
-    for (i = 0; i < h1.length; i++) { h1[i].style.color = "#000"; h1[i].animate(toggle_anim, { duration: 1000})};
-    for (i = 0; i < h2.length; i++) { h2[i].style.color = "#000"; h2[i].animate(toggle_anim, { duration: 1000})};
-    for (i = 0; i < li.length; i++) { li[i].style.color = "#000"; li[i].animate(toggle_anim, { duration: 1000})};
+    try { hr.style.backgroundColor = "#000"; hr.animate(toggle_anim, { duration: 1000})} catch {};
+    try { for (i = 0; i < h1.length; i++) { h1[i].style.color = "#000"; h1[i].animate(toggle_anim, { duration: 1000})}} catch {}; 
+    try { for (i = 0; i < h2.length; i++) { h2[i].style.color = "#000"; h2[i].animate(toggle_anim, { duration: 1000})}} catch{};
+    try { for (i = 0; i < li.length; i++) { li[i].style.color = "#000"; li[i].animate(toggle_anim, { duration: 1000})}} catch{};
+    if (toggle) {localStorage["Toggle"] = "false"; location.reload();}
   }
   else {
-    toggle = !toggle;
-    toggle_btn.textContent = "☽"; toggle_btn.animate(toggle_anim, { duration: 1000});
+    toggle_btn.textContent = "☀"; toggle_btn.animate(toggle_anim, { duration: 1000});
     document.body.style.backgroundColor = "#000"; document.body.animate(toggle_anim, { duration: 1000});
-    for (i = 0; i < h1.length; i++) { h1[i].style.color = "#fff"; h1[i].animate(toggle_anim, { duration: 1000})};
-    for (i = 0; i < h2.length; i++) { h2[i].style.color = "#fff"; h2[i].animate(toggle_anim, { duration: 1000})};
-    for (i = 0; i < li.length; i++) { li[i].style.color = "#fff"; li[i].animate(toggle_anim, { duration: 1000})};
+    try { hr.style.backgroundColor = "#fff"; hr.animate(toggle_anim, { duration: 1000})} catch {};
+    try { for (i = 0; i < h1.length; i++) { h1[i].style.color = "#fff"; h1[i].animate(toggle_anim, { duration: 1000})}} catch {};
+    try { for (i = 0; i < h2.length; i++) { h2[i].style.color = "#fff"; h2[i].animate(toggle_anim, { duration: 1000})}} catch {};
+    try { for (i = 0; i < li.length; i++) { li[i].style.color = "#fff"; li[i].animate(toggle_anim, { duration: 1000})}} catch {};
+    if (toggle) {localStorage["Toggle"] = "true"; location.reload();}
   }
 }
 

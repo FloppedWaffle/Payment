@@ -34,6 +34,10 @@ input { /*Поля*/
 .main {
     text-align: center;
 }
+.main hr {
+    height: 0.75vh;
+    background-color: #000;
+}
 
 .start-btns { /*div с верхними кнопками на страничке*/
     display: flex;

@@ -10,7 +10,7 @@
 <body>
     <div class="start-btns">
         <button class="btn-green">Выйти из аккаунта</button>
-        <button id="lightDarkToggle" onclick="lightDarkToggle()" class="lightDarkToggle">&#9728;</button>
+        <button id="lightDarkToggle" onclick="lightDarkToggle(true)" class="lightDarkToggle">&#9728;</button>
     </div>
     <div class="main">
         <div id="info">
@@ -19,7 +19,7 @@
             <h2>Ваш класс - 9А</h2>
             <h2>Баланс: 1337 талиц</h2>
         </div>
-        <hr>
+        <hr id="main-hr">
         <h1>Ваши возможности:</h1>
         <div class="btns"></div>
             <button onclick="nalogi()" class="btn-purple">Уплатить налоги</button><br>
@@ -32,5 +32,6 @@
     </div>
 
     <script src="script.js"></script>
+    <script>lightDarkToggle()</script>
 </body>
 </html>
