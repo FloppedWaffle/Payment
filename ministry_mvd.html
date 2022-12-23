@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <head>
+    <!-- <script>alert("Надо сделать вывод всех транзакций по 3 табличкам")</script> -->
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MVD</title>
 </head>
 <body>
-    <button class="btn-green">Выйти из аккаунта</button>
+    <div class="start-btns">
+        <button id="logout" onclick="logout()" class="btn-green">Выйти из аккаунта</button>
+        <button id="lightDarkToggle" onclick="lightDarkToggle(true)" class="lightDarkToggle">&#9728;</button>
+    </div>
     <div class="main">
         <div id="info">
             <h1>Добро пожаловать, сотрудник МВД!</h1>
             <h2>У вас есть доступ к таблице транзакций по всей системе</h2>
-            <p>Переводы игроков</p>
-            <p>Переводы гос фирм</p>
-            <p>Переводы частных фирм</p>
         </div>
     </div>
+    <script src="script.js"></script>
+    <script>lightDarkToggle()</script>
+    <script>transfersLogs()</script>
 </body>
