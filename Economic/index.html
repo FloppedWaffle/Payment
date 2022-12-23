@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="start-btns">
+        <button id="logout" onclick="logout()" class="btn-green">Выйти из аккаунта</button>
+        <button id="lightDarkToggle" onclick="lightDarkToggle(true)" class="lightDarkToggle">&#9728;</button>
+    </div>
+    <div class="main">
+        <div id="info">
+            <h1>Добро пожаловать, сотрудник министерства экономики!</h1>
+            <hr id="main-hr">
+            <h1>Ваши возможности: </h1>
+        </div>
+        <div>
+            <button onclick="" id="pincode-change" class="btn-purple">Изменение пин-кода игрока</button><br>
+            <button onclick="" id="cashcard-transfer" class="btn-purple">Перевод электронных денег или наличных</button><br>
+            <button onclick="transfersLogs()" id="transfers" class="btn-purple">Транзакции</button>
+        </div>
+    </div>
+    <script src="/script.js"></script>
+    <script>lightDarkToggle()</script>
+</body>

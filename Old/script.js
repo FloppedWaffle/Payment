@@ -1,32 +1,36 @@
 //alert("TODO_0: сделать инициализацию пользователя с сервера. Если он госслужащий, то мы добавим кнопочку 'перейти в министерство'(она есть в хтмльке), которая отправит пользователя на страницу министерства (которую мы ща активно делаем. наверно). Если деловой важный человек предприниматель, то мы добавим кнопочку 'перейти в фирму' (она тоже есть в хтмл), которая отправит пользователя на страницу фирмы (которую мы тоже делаем, но не так активно).");
 
-function lightDarkToggle (toggle) { //Отрисовщик интерфейса страницы
+function lightDarkToggle (toggle) { //Переключатель светлого и тёмного режима странички
   if (typeof localStorage["Toggle"] != "string") {
     localStorage["Toggle"] = "true";
   }
 
-  let h1 = document.querySelector("#info").querySelectorAll("h1");
+  let h1 = document.querySelectorAll("h1");
   let h2 = document.querySelector("#info").querySelectorAll("h2");
   let li = document.querySelectorAll("li");
   let hr = document.getElementById("main-hr");
   let toggle_btn = document.getElementById("lightDarkToggle");
+  toggle_anim = [
+    { opacity: 0},
+    { opacity: 1}
+  ]
 
   if (localStorage["Toggle"] == "true") {
-    toggle_btn.textContent = "🌚"; toggle_btn.animate([{opacity: 0}, {opacity: 1}], { duration: 1000});
-    try { hr.style.backgroundColor = "#000"; hr.style.borderColor = "#000";} catch {};
-    try { for (i = 0; i < h1.length; i++) { h1[i].style.color = "#000"}} catch {}; 
-    try { for (i = 0; i < h2.length; i++) { h2[i].style.color = "#000"}} catch {};
-    try { for (i = 0; i < li.length; i++) { li[i].style.color = "#000"}} catch {};
-    document.body.style.backgroundColor = "#fff"; document.body.animate([{opacity: 0}, {opacity: 1}], { duration: 1000});
+    toggle_btn.textContent = "🌚"; toggle_btn.animate(toggle_anim, { duration: 1000});
+    document.body.style.backgroundColor = "#fff"; document.body.animate(toggle_anim, { duration: 1000});
+    try { hr.style.backgroundColor = "#000"; hr.animate(toggle_anim, { duration: 1000})} catch {};
+    try { for (i = 0; i < h1.length; i++) { h1[i].style.color = "#000"; h1[i].animate(toggle_anim, { duration: 1000})}} catch {}; 
+    try { for (i = 0; i < h2.length; i++) { h2[i].style.color = "#000"; h2[i].animate(toggle_anim, { duration: 1000})}} catch{};
+    try { for (i = 0; i < li.length; i++) { li[i].style.color = "#000"; li[i].animate(toggle_anim, { duration: 1000})}} catch{};
     if (toggle) {localStorage["Toggle"] = "false"; location.reload();}
   }
   else {
-    toggle_btn.textContent = "☀"; toggle_btn.animate([{opacity: 0}, {opacity: 1}], { duration: 1000});
-    try { hr.style.backgroundColor = "#fff"; hr.style.borderColor = "#fff";} catch {};
-    try { for (i = 0; i < h1.length; i++) { h1[i].style.color = "#fff"}} catch {}; 
-    try { for (i = 0; i < h2.length; i++) { h2[i].style.color = "#fff"}} catch {};
-    try { for (i = 0; i < li.length; i++) { li[i].style.color = "#fff"}} catch {};
-    document.body.style.backgroundColor = "#000"; document.body.animate([{opacity: 0}, {opacity: 1}], { duration: 1000});
+    toggle_btn.textContent = "☀"; toggle_btn.animate(toggle_anim, { duration: 1000});
+    document.body.style.backgroundColor = "#000"; document.body.animate(toggle_anim, { duration: 1000});
+    try { hr.style.backgroundColor = "#fff"; hr.animate(toggle_anim, { duration: 1000})} catch {};
+    try { for (i = 0; i < h1.length; i++) { h1[i].style.color = "#fff"; h1[i].animate(toggle_anim, { duration: 1000})}} catch {};
+    try { for (i = 0; i < h2.length; i++) { h2[i].style.color = "#fff"; h2[i].animate(toggle_anim, { duration: 1000})}} catch {};
+    try { for (i = 0; i < li.length; i++) { li[i].style.color = "#fff"; li[i].animate(toggle_anim, { duration: 1000})}} catch {};
     if (toggle) {localStorage["Toggle"] = "true"; location.reload();}
   }
 }
@@ -114,48 +118,15 @@ function uslugi () {
   </div>`);
 }
 
-function transfersLogs () { //Отрисовка таблицы логов
-  let transfer_div = document.getElementById("log-table");
-  let transfer_btn = document.getElementById("transfers");
-  if (transfer_div == null) {
-    transfer_div = document.createElement("div");
-    transfer_div.classList.add("log-table");
-    transfer_div.setAttribute("id", "log-table");
-    if (transfer_btn == null || transfer_btn == undefined) {
-      document.body.append(transfer_div);
-    }
-    else {
-      transfer_btn.textContent = "Закрыть транзакции";
-      transfer_btn.after(transfer_div);
-    };
-    transfer_div.insertAdjacentHTML("afterbegin", `
-      <button onclick="playerTransfers()" class="btn-orange">Транзакции игроков</button>
-      <button onclick="pubfirmTransfers()" class="btn-orange">Транзакции гос. фирм</button>
-      <button id="prifirmTransfersId" onclick="prifirmTransfers()" class="btn-orange">Транзакции частных фирм</button>`);
-    transfer_div.animate([ {opacity: 0}, {opacity: 1}], { duration: 1000});
-    transfer_div.scrollIntoView();
-  }
-  else {
-    transfer_btn.setAttribute("disabled", "disabled");
-    transfer_div.animate([ {opacity: 1}, {opacity: 0}], { duration: 1000});
-    setTimeout(() => {
-      transfer_div.remove();
-      transfer_btn.removeAttribute("disabled");
-      transfer_btn.textContent = "Транзакции";
-    }, 970);
-  }
-}
-
 function pinCode () { //Модальное окно с вводом пин-кода. 
   alert('TODO_4: Нижнюю проверку на кол-во символов надо будет заменить на проверку наличия игрока/фирмы в базе данных. В случае игрока - проверка кол-ва талиц на балансе. В случае фирмы - проверка кол-ва талиц на балансе и проверка наличия услуги у фирмы.');
   let inputForm1 = document.getElementById("input_1");
   let inputForm2 = document.getElementById("input_2");
-
   if (inputForm1.value.length < 4) {
-    inputForm1.style.border = "2px solid #ff483b";
+    inputForm1.style.border = "1px solid #ff483b";
   }
   if (inputForm2.value.length < 4) {
-    inputForm2.style.border = "2px solid #ff483b";
+    inputForm2.style.border = "1px solid #ff483b";
   }
   if (inputForm1.value.length > 4 && inputForm2.value.length > 4) {  
     let pin_modal = document.createElement("div");
@@ -189,13 +160,12 @@ function pinCode () { //Модальное окно с вводом пин-ко�
 function pinCodeVerify () { //Подтверждение пин-кода.
   let pinForm = document.querySelector("form");
   let pinInput = document.getElementById("pin-input");
-
   alert('TODO_5: Тут надо запросы к серваку делать на подтверждение пин-кода, а не тот огрызок, который я сделал. PIN=228133');
   if (pinInput.value == "228133" ) {
     pinForm.submit();
   }
   else {
-    pinInput.style.border = "2px solid #ff483b";
+    pinInput.style.border = "1px solid #ff483b";
   }
 }
 
@@ -220,7 +190,7 @@ function modalCancel () { //Кнопка "Выйти" в модалках
   }
 }
 
-function playerTransfers () { //Таблица и отрисовка её внутренностей (3 следующих функции)
+function playerTransfers () {
   try {log_values = document.getElementById("log-values").remove();} catch {};
   let prifirmTransfersId = document.getElementById("prifirmTransfersId");
   prifirmTransfersId.insertAdjacentHTML("afterend", `
@@ -259,18 +229,18 @@ function pubfirmTransfers () {
   <!--Образец вывода-->
   <p>|338 талиц, 15:51|</p>
   <p>|Дофига важный|</p>
-  <p>|Хух бумажный|</p>
+  <p>|Х#й бумажный|</p>
   <hr>
   <p>|777 талиц, 12:12|</p>
   <p>|Uvuvwevwevwe Onyetenyevwe Ugwemuhwem Osas-старший|</p>
-  <p>|Едрить молодец|</p>
+  <p>|Еб#ть пизд#тый|</p>
   <hr>
   <p>|4321 талиц, 11:52|</p>
-  <p>|Едрить комплимент|</p>
+  <p>|Еб#ть комплимент|</p>
   <p>|В жопе цемент|</p>
   <hr>
   <p>|1341 талиц, 10:43|</p>
-  <p>|Фига крутой|</p>
+  <p>|Х#я крутой|</p>
   <p>|Вытри ♂ cum ♂ под губой|</p>
   </div>`);
 }

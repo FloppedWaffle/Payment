@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher</title>
+</head>
+<body>
+    <div class="start-btns">
+        <button class="btn-green">Выйти из аккаунта</button>
+        <button id="lightDarkToggle" onclick="lightDarkToggle(true)" class="lightDarkToggle">&#9728;</button>
+    </div>
+    <div class="main">
+        <div id="info">
+            <h1>Добро пожаловать, Вареник!</h1>
+            <h2>Вас зовут Вареник Вареньевна</h2>
+            <h2>Ваше госпредприятие - матан</h2>
+            <h2>Баланс: 15 талиц</h2>
+            <h2>Баланс фирмы: 9999 талиц</h2>
+            <hr id="main-hr">
+            <h1>Ваши возможности:</h1>
+        </div>
+        <div>
+            <button onclick="perevod()" class="btn-purple">Выдача зарплаты</button><br>
+            <button onclick="uslugi()" class="btn-purple">Оплата услуг</button><br>
+        </div>
+    </div>
+
+    <script src="/script.js"></script>
+    <script>lightDarkToggle()</script>
+</body>
